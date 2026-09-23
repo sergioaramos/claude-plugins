@@ -1,0 +1,14 @@
+{
+  "name": "sergio-plugins",
+  "owner": { "name": "Sergio Ramos", "url": "https://github.com/sergioaramos" },
+  "metadata": { "description": "Plugins de Claude Code de Sergio Ramos: flujo spec-driven en español, revisores y cierre de sesión con vault de contexto." },
+  "plugins": [
+    {
+      "name": "sergio-dev",
+      "source": "./plugins/sergio-dev",
+      "description": "Flujo spec-driven (specify → plan → tasks → implement → ship → cerrar, más /quick y /db-change), revisores genéricos y hooks de seguridad.",
+      "version": "1.0.0",
+      "category": "productivity"
+    }
+  ]
+}

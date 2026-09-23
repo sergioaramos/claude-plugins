@@ -1,0 +1,21 @@
+{
+  "description": "Guardas de seguridad: bloquea comandos destructivos y detecta secretos en archivos editados.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/guard-bash.sh\"", "timeout": 5 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "bash \"${CLAUDE_PLUGIN_ROOT}/scripts/scan-secrets.sh\"", "timeout": 15 }
+        ]
+      }
+    ]
+  }
+}
