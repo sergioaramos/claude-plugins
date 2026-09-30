@@ -11,7 +11,7 @@ claude plugin install sergio-dev@sergio-plugins
 ## El flujo
 | Comando | Qué hace | Produce |
 |---|---|---|
-| `/sergio-dev:specify` | QUÉ y POR QUÉ en EARS + Gherkin. Termina con preguntas de clarificación numeradas. | `specs/NNN-slug/spec.md` |
+| `/sergio-dev:specify` | QUÉ y POR QUÉ: requisitos EARS estrictos, criterios en Gherkin (`# language: es`), NFR medibles, matriz FR → AC y autoverificación. Termina con preguntas de clarificación numeradas. | `specs/NNN-slug/spec.md` |
 | `/sergio-dev:plan` | CÓMO: mini-ADRs, arquitectura, pruebas, riesgos. Termina con la tabla de consistencia spec ↔ plan. | `plan.md` |
 | `/sergio-dev:tasks` | Tareas pequeñas y verificables; el test de cada bloque va primero (TDD embebido). | `tasks.md` |
 | `/sergio-dev:implement` | Una tarea por invocación (`--all` para un bloque). Rojo → verde → refactor. | código + tests |

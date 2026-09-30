@@ -7,7 +7,7 @@
       "name": "sergio-dev",
       "source": "./plugins/sergio-dev",
       "description": "Flujo spec-driven (specify → plan → tasks → implement → ship → cerrar, más /quick y /db-change), revisores genéricos y hooks de seguridad.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "productivity"
     }
   ]

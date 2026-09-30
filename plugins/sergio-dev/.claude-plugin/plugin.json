@@ -1,6 +1,6 @@
 {
   "name": "sergio-dev",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Flujo spec-driven en español (EARS + TDD), revisores genéricos con modelo económico y hooks que bloquean comandos destructivos y secretos.",
   "author": { "name": "Sergio Ramos", "email": "sergioramos.sr758@gmail.com" },
   "homepage": "https://github.com/sergioaramos/claude-plugins",
