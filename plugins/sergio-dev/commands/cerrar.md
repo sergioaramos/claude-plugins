@@ -9,7 +9,8 @@ $ARGUMENTS
 1. **Resumen en 5 líneas**: qué se decidió, qué cambió de estado, qué quedó pendiente. Si solo se escribió código, dilo y salta al paso 4.
 2. **Vault**: invoca al agente `vault-archivist` con ese resumen para que actualice el vault de contexto (por defecto `~/Documents/Contexto`).
 3. **Verifica** que en el vault no haya entrado nada técnico (rutas, comandos) ni credenciales: eso va al `CLAUDE.md` del workspace o a ningún sitio.
-4. **Repo limpio**: `git status`. Si hay cambios sin commitear, dilo; no commitees sin confirmación.
+   Luego **sube el vault** (es un repo git y puede estar abierto en otra máquina): `git -C <vault> add -A && git -C <vault> commit -m "vault: <resumen de una línea>"`, `git -C <vault> pull --rebase` y `git -C <vault> push`. El vault no es código: no pide confirmación. Si el pull da conflicto, aborta el rebase, no fuerces nada y avisa.
+4. **Repo limpio** (el del trabajo, no el vault): `git status`. Si hay cambios sin commitear, dilo; no commitees sin confirmación.
 5. **Retro (la parte que hace que el sistema mejore)**: responde en 3 puntos como máximo:
    - ¿Qué instrucción faltó o estorbó en el `CLAUDE.md` del workspace o del repo? Propón el diff exacto.
    - ¿Algún comando, skill o agente falló o se quedó corto? Propón el cambio concreto (archivo y líneas).
