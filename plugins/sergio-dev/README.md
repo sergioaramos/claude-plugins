@@ -28,6 +28,7 @@ Por qué así y no como Spec Kit o BMAD: mismo número de pasos que mi flujo ant
 
 ## Hooks
 - `PreToolUse(Bash)` bloquea: `rm -rf` sobre home/raíz, force push a ramas protegidas, `git reset --hard`, `terraform apply/destroy`, `docker prune/volume rm`, `DROP/TRUNCATE`, y escrituras o reinicios vía `ssh`. Es una segunda barrera además de los permisos normales.
+  - Excepción: los alias de `~/.ssh/config` listados en `~/.config/sergio-dev/trusted-hosts` (uno por línea) son máquinas de desarrollo propias y sus comandos remotos (`ssh`, `scp`) no se revisan. Nunca pongas ahí un servidor de producción.
 - `PostToolUse(Edit|Write)` pasa `gitleaks` sobre el archivo escrito y avisa si parece haber un secreto.
 
 ## Convenciones que asume
