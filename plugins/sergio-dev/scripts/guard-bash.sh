@@ -22,6 +22,19 @@ def block(reason):
 # Cada segmento = trozo entre operadores de shell. Si empieza por ssh, extraemos su comando remoto.
 segments = re.split(r"\s*(?:&&|\|\||;|\||\n)\s*", cmd)
 local, remote = [], []
+
+# Hosts confiables (máquinas de desarrollo propias, no producción): sus comandos remotos no se revisan.
+# Un alias de ~/.ssh/config por línea en ~/.config/sergio-dev/trusted-hosts; '#' comenta.
+import os
+try:
+    with open(os.path.expanduser("~/.config/sergio-dev/trusted-hosts")) as f:
+        TRUSTED = {l.split("#")[0].strip() for l in f} - {""}
+except OSError:
+    TRUSTED = set()
+
+def host_of(tok):
+    # "user@host:ruta" o "host" → "host"
+    return tok.split(":")[0].split("@")[-1]
 SSH_WITH_ARG = {"-i","-p","-o","-l","-F","-J","-L","-R","-D","-W","-E","-b","-c","-e","-m","-O","-Q","-S","-w","-B","-I","-P"}
 for seg in segments:
     seg = seg.strip()
@@ -35,12 +48,17 @@ for seg in segments:
         if toks[0] != "ssh":
             toks = toks[1:] if toks[0] in ("sudo", "time") else toks
         if toks[0] == "scp":
+            targets = [host_of(t) for t in toks[1:] if not t.startswith("-") and ":" in t]
+            if targets and all(h in TRUSTED for h in targets):
+                continue
             remote.append("scp " + " ".join(toks[1:]))
             continue
         i = 1
         while i < len(toks) and toks[i].startswith("-"):
             i += 2 if toks[i] in SSH_WITH_ARG else 1
         # toks[i] es el host; el resto es el comando remoto
+        if i < len(toks) and host_of(toks[i]) in TRUSTED:
+            continue
         remote.append(" ".join(toks[i+1:]))
     else:
         local.append(seg)
